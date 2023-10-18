@@ -92,3 +92,18 @@ exports.getAllCategories = async (req, res) => {
     });
   }
 };
+
+exports.createCategory = async (req, res) => {
+  console.log('creating new Category');
+
+  try {
+    console.log(req.body);
+    const Category = await category.create(req.body);
+    res.status(200).send(Category);
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      message: err,
+    });
+  }
+};
